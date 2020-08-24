@@ -8,13 +8,16 @@ class Engineer extends Employee {
   }
 
   getGithub() {
-    console.log(github);
+    return `Github Username: ${this.github}`;
   }
 
   getRole() {
-    // override for 'engineer'
-    console.log(role);
+    return `Role: ${this}`;
   }
 }
+
+const rachel = new Engineer("1234", "Rachel", "r@r.com", "relizabet");
+
+console.log(rachel);
 
 module.exports = Engineer;

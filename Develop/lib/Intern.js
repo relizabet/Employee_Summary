@@ -17,4 +17,8 @@ class Intern extends Employee {
   }
 }
 
+const rachel = new Intern("12345", "Rachel", "rachel@rachel.com", "UNH");
+
+console.log(rachel);
+
 module.exports = Intern;
