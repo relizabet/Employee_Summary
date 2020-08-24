@@ -2,10 +2,18 @@
 const Employee = require("./Employee");
 
 class Engineer extends Employee {
-  constructor(em1, enA, enB) {
-    super(em1, em2, em3);
-    this.enA = enA;
-    this.enB = enB;
+  constructor(id, name, email, github) {
+    super(id, name, email);
+    this.github = github;
+  }
+
+  getGithub() {
+    console.log(github);
+  }
+
+  getRole() {
+    // override for 'engineer'
+    console.log(role);
   }
 }
 
