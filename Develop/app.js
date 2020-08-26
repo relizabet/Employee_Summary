@@ -14,7 +14,7 @@ const render = require("./lib/htmlRenderer");
 
 // ** a new employee created?
 
-const questions = [
+const empQuestions = [
   {
     type: "input",
     name: "name",
@@ -26,6 +26,12 @@ const questions = [
     name: "id",
     message: "What is their employee id?",
     default: "1234",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is their employee email?",
+    default: "rachel@rachel.com",
   },
 ];
 
@@ -44,19 +50,14 @@ const questions = [
 // askQuestions();
 
 function getEmployee() {
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "Provide your Employees full name.",
-        default: "Jane Doe",
-      },
-    ])
-    .then(function (res, req) {
+  try {
+    inquirer.prompt(empQuestions).then(function (res, req) {
       addedEmployee = new Employee(getName());
       console.log(addedEmployee);
     });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 getEmployee();
