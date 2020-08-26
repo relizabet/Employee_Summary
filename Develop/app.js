@@ -3,7 +3,6 @@ const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const empQuestions = require("./lib/questions");
-// const intQuesions = require("./lib/questions");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -13,7 +12,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const newEmployee = [];
+const newEmployee = [(id = ""), (name = ""), (email = "")];
 
 // Write code to use inquirer to gather information about the development team members, and to create objects for each team member (using the correct classes as blueprints!)
 
@@ -32,11 +31,14 @@ const newEmployee = [];
 
 // askQuestions();
 
-function getEmployee() {
+async function getEmployee() {
   try {
-    inquirer.prompt(empQuestions).then(function (res) {
+    inquirer.prompt(empQuestions).then(function (res, req) {
+      console.log(newEmployee);
       addedEmployee = new Employee();
+      console.log(newEmployee);
       newEmployee.push(addedEmployee);
+      console.log(newEmployee);
     });
   } catch (err) {
     console.log(err);

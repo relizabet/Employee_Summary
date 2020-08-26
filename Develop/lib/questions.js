@@ -19,15 +19,4 @@ const empQuestions = [
   },
 ];
 
-const intQuestions = [
-  {
-    type: "input",
-    name: "school",
-    message: "What school does your intern attend?",
-    default: "UNH",
-  },
-];
-
 module.exports = empQuestions;
-
-module.exports = intQuestions;
