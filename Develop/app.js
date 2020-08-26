@@ -1,7 +1,9 @@
 const Manager = require("./lib/Manager");
+const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const empQuestions = require("./lib/questions");
+// const intQuesions = require("./lib/questions");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -10,6 +12,8 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+
+const newEmployee = [];
 
 // Write code to use inquirer to gather information about the development team members, and to create objects for each team member (using the correct classes as blueprints!)
 
@@ -20,6 +24,7 @@ const render = require("./lib/htmlRenderer");
 // HINT: each employee type (manager, engineer, or intern) has slightly different information; write your code to ask different questions via inquirer depending on employee type.
 
 // HINT: make sure to build out your classes first! Remember that your Manager, Engineer, and Intern classes should all extend from a class named Employee; see the directions for further information. Be sure to test out each class and verify it generates an object with the correct structure and methods. This structure will be crucial in order for the provided `render` function to work! ```
+
 // function askQuestions() {
 //   // use inquirer to prompt the questions and (return) the answers
 //   return inquirer.prompt(questions);
@@ -29,13 +34,24 @@ const render = require("./lib/htmlRenderer");
 
 function getEmployee() {
   try {
-    inquirer.prompt(empQuestions).then(function (res, req) {
-      addedEmployee = new Employee(getName());
-      console.log(addedEmployee);
+    inquirer.prompt(empQuestions).then(function (res) {
+      addedEmployee = new Employee();
+      newEmployee.push(addedEmployee);
     });
   } catch (err) {
     console.log(err);
   }
 }
+
+// function getIntern() {
+//   try {
+//     inquirer.prompt(intQuesions).then(function (res) {
+//       addedIntern = new Intern();
+//       newEmployee.push(addedIntern);
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
 getEmployee();
