@@ -7,19 +7,19 @@ class Employee {
   }
 
   getId() {
-    console.log(id);
+    console.log(this.id);
   }
 
   getName() {
-    console.log(name);
+    console.log(this.name);
   }
 
   getEmail() {
-    console.log(email);
+    console.log(this.email);
   }
 
   getRole() {
-    console.log(role);
+    console.log(this.role);
   }
 }
 
