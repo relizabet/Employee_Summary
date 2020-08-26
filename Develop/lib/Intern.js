@@ -5,15 +5,16 @@ class Intern extends Employee {
   constructor(id, name, email, school) {
     super(id, name, email);
     this.school = school;
+    this.role = "Intern";
   }
 
   getSchool() {
-    console.log(school);
+    return this.school;
   }
 
   getRole() {
     // override for 'intern'
-    console.log(role);
+    return this.role;
   }
 }
 

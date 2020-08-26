@@ -5,11 +5,15 @@ class Manager extends Employee {
   constructor(id, name, email, officeNumber) {
     super(id, name, email);
     this.officeNumber = officeNumber;
+    this.role = "Manager";
   }
 
   getRole() {
-    // override for 'manager'
-    console.log(role);
+    return this.role;
+  }
+
+  getOfficeNumber() {
+    return this.officeNumber;
   }
 }
 

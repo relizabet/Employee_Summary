@@ -13,11 +13,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 const newEmployee = [];
-const fillEmp = {
-  id: "",
-  name: "",
-  email: "",
-};
 
 // Write code to use inquirer to gather information about the development team members, and to create objects for each team member (using the correct classes as blueprints!)
 
@@ -38,25 +33,13 @@ const fillEmp = {
 
 async function getEmployee() {
   try {
-    inquirer.prompt(empQuestions).then(function (res, req) {
-      addedEmployee = new Employee();
-      fillEmp.push(addedEmployee.id, addedEmployee.name, addedEmployee.email);
-      console.log(fillEmp);
+    inquirer.prompt(empQuestions).then(function (res) {
+      addedEmployee = new Employee(res.name, res.id, res.email);
+      newEmployee.push(addedEmployee);
     });
   } catch (err) {
     console.log(err);
   }
 }
-
-// function getIntern() {
-//   try {
-//     inquirer.prompt(intQuesions).then(function (res) {
-//       addedIntern = new Intern();
-//       newEmployee.push(addedIntern);
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
 
 getEmployee();
