@@ -54,7 +54,6 @@ async function getIntern() {
       .then(function (res) {
         addedEmployee = new Intern(res.name, res.id, res.email, res.school);
         newEmployee.push(addedEmployee);
-        console.log(newEmployee);
       });
   } catch (err) {
     console.log(err);
@@ -104,7 +103,6 @@ async function getManager() {
           res.officeNumber
         );
         newEmployee.push(addedEmployee);
-        console.log(newEmployee);
         if (res.more === "Yes") {
           init();
         }
@@ -152,7 +150,7 @@ async function getEngineer() {
       .then(function (res) {
         addedEmployee = new Engineer(res.name, res.id, res.email, res.github);
         newEmployee.push(addedEmployee);
-        console.log(newEmployee);
+
         if (res.more === "Yes") {
           init();
         }
