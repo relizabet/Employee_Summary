@@ -18,7 +18,7 @@ const newEmployee = [];
 
 async function getIntern() {
   try {
-    inquirer
+    return inquirer
       .prompt([
         {
           type: "input",
@@ -43,6 +43,12 @@ async function getIntern() {
           name: "school",
           message: "What school does your intern attend?",
           default: "UNH",
+        },
+        {
+          type: "list",
+          name: "more",
+          message: "Would you like to add another employee?",
+          choices: ["Yes", "No"],
         },
       ])
       .then(function (res) {
@@ -83,6 +89,12 @@ async function getManager() {
           message: "What is the managers office number?",
           default: "123-456-7890",
         },
+        {
+          type: "list",
+          name: "more",
+          message: "Would you like to add another employee?",
+          choices: ["Yes", "No"],
+        },
       ])
       .then(function (res) {
         addedEmployee = new Manager(
@@ -93,6 +105,9 @@ async function getManager() {
         );
         newEmployee.push(addedEmployee);
         console.log(newEmployee);
+        if (res.more === "Yes") {
+          init();
+        }
       });
   } catch (err) {
     console.log(err);
@@ -127,11 +142,20 @@ async function getEngineer() {
           message: "What is the engineers github username?",
           default: "relizabet",
         },
+        {
+          type: "list",
+          name: "more",
+          message: "Would you like to add another employee?",
+          choices: ["Yes", "No"],
+        },
       ])
       .then(function (res) {
         addedEmployee = new Engineer(res.name, res.id, res.email, res.github);
         newEmployee.push(addedEmployee);
         console.log(newEmployee);
+        if (res.more === "Yes") {
+          init();
+        }
       });
   } catch (err) {
     console.log(err);
@@ -173,17 +197,4 @@ init();
 // function askQuestions() {
 //   // use inquirer to prompt the questions and (return) the answers
 //   return inquirer.prompt(questions);
-// }
-
-// askQuestions();
-
-// async function getEmployee() {
-//   try {
-//     inquirer.prompt(empQuestions).then(function (res) {
-//       addedEmployee = new Employee(res.name, res.id, res.email);
-//       newEmployee.push(addedEmployee);
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
 // }
