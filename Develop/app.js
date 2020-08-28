@@ -2,7 +2,7 @@ const Manager = require("./lib/Manager");
 const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const empQuestions = require("./lib/questions");
+// const empQuestions = require("./lib/questions");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -15,6 +15,152 @@ const render = require("./lib/htmlRenderer");
 const newEmployee = [];
 
 // Write code to use inquirer to gather information about the development team members, and to create objects for each team member (using the correct classes as blueprints!)
+
+async function getIntern() {
+  try {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "name",
+          message: "What is the interns full name?",
+          default: "Jane Doe",
+        },
+        {
+          type: "input",
+          name: "id",
+          message: "What is their employee id?",
+          default: "1234",
+        },
+        {
+          type: "input",
+          name: "email",
+          message: "What is the interns email address?",
+          default: "rachel@rachel.com",
+        },
+        {
+          type: "input",
+          name: "school",
+          message: "What school does your intern attend?",
+          default: "UNH",
+        },
+      ])
+      .then(function (res) {
+        addedEmployee = new Intern(res.name, res.id, res.email, res.school);
+        newEmployee.push(addedEmployee);
+        console.log(newEmployee);
+      });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function getManager() {
+  try {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "name",
+          message: "What is the managers full name?",
+          default: "Jane Doe",
+        },
+        {
+          type: "input",
+          name: "id",
+          message: "What is their employee id?",
+          default: "1234",
+        },
+        {
+          type: "input",
+          name: "email",
+          message: "What is the managers email address?",
+          default: "rachel@rachel.com",
+        },
+        {
+          type: "input",
+          name: "officeNumber",
+          message: "What is the managers office number?",
+          default: "123-456-7890",
+        },
+      ])
+      .then(function (res) {
+        addedEmployee = new Manager(
+          res.name,
+          res.id,
+          res.email,
+          res.officeNumber
+        );
+        newEmployee.push(addedEmployee);
+        console.log(newEmployee);
+      });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function getEngineer() {
+  try {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "name",
+          message: "What is the engineers full name?",
+          default: "Jane Doe",
+        },
+        {
+          type: "input",
+          name: "id",
+          message: "What is their employee id?",
+          default: "1234",
+        },
+        {
+          type: "input",
+          name: "email",
+          message: "What is the engineers email address?",
+          default: "rachel@rachel.com",
+        },
+        {
+          type: "input",
+          name: "github",
+          message: "What is the engineers github username?",
+          default: "relizabet",
+        },
+      ])
+      .then(function (res) {
+        addedEmployee = new Engineer(res.name, res.id, res.email, res.github);
+        newEmployee.push(addedEmployee);
+        console.log(newEmployee);
+      });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function init() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "employee",
+        message: "What type of employee would you like to add",
+        choices: ["Manager", "Engineer", "Intern"],
+      },
+    ])
+    .then(function (res) {
+      console.log(res.employee);
+      if (res.employee === "Manager") {
+        getManager();
+      } else if (res.employee === "Intern") {
+        getIntern();
+      } else if (res.employee === "Engineer") {
+        getEngineer();
+      }
+    });
+}
+
+init();
 
 // After the user has input all employees desired, call the `render` function (required above) and pass in an array containing all employee objects; the `render` function will generate and return a block of HTML including templated divs for each employee!
 
@@ -31,15 +177,13 @@ const newEmployee = [];
 
 // askQuestions();
 
-async function getEmployee() {
-  try {
-    inquirer.prompt(empQuestions).then(function (res) {
-      addedEmployee = new Employee(res.name, res.id, res.email);
-      newEmployee.push(addedEmployee);
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-getEmployee();
+// async function getEmployee() {
+//   try {
+//     inquirer.prompt(empQuestions).then(function (res) {
+//       addedEmployee = new Employee(res.name, res.id, res.email);
+//       newEmployee.push(addedEmployee);
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
