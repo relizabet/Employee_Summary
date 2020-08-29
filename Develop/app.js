@@ -51,9 +51,18 @@ async function getIntern() {
           choices: ["Yes", "No"],
         },
       ])
-      .then(function (res) {
-        addedEmployee = new Intern(res.name, res.id, res.email, res.school);
+      .then((answers) => {
+        addedEmployee = new Intern(
+          answers.name,
+          answers.id,
+          answers.email,
+          answers.school
+        );
         newEmployee.push(addedEmployee);
+
+        if (answers.more === "Yes") {
+          init();
+        }
       });
   } catch (err) {
     console.log(err);
@@ -95,17 +104,18 @@ async function getManager() {
           choices: ["Yes", "No"],
         },
       ])
-      .then(function (res) {
+      .then((answers) => {
         addedEmployee = new Manager(
-          res.name,
-          res.id,
-          res.email,
-          res.officeNumber
+          answers.name,
+          answers.id,
+          answers.email,
+          answers.officeNumber
         );
         newEmployee.push(addedEmployee);
-        if (res.more === "Yes") {
+        if (answers.more === "Yes") {
           init();
         }
+        console.log(newEmployee);
       });
   } catch (err) {
     console.log(err);
@@ -147,11 +157,16 @@ async function getEngineer() {
           choices: ["Yes", "No"],
         },
       ])
-      .then(function (res) {
-        addedEmployee = new Engineer(res.name, res.id, res.email, res.github);
+      .then((answers) => {
+        addedEmployee = new Engineer(
+          answers.name,
+          answers.id,
+          answers.email,
+          answers.github
+        );
         newEmployee.push(addedEmployee);
 
-        if (res.more === "Yes") {
+        if (answers.more === "Yes") {
           init();
         }
       });
@@ -170,16 +185,18 @@ async function init() {
         choices: ["Manager", "Engineer", "Intern"],
       },
     ])
-    .then(function (res) {
-      if (res.employee === "Manager") {
+    .then((answers) => {
+      if (answers.employee === "Manager") {
         getManager();
-      } else if (res.employee === "Intern") {
+      } else if (answers.employee === "Intern") {
         getIntern();
-      } else if (res.employee === "Engineer") {
+      } else if (answers.employee === "Engineer") {
         getEngineer();
       }
     });
 }
+
+console.log(newEmployee);
 
 init();
 
