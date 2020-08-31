@@ -1,8 +1,7 @@
 const Manager = require("./lib/Manager");
-const Employee = require("./lib/Employee");
+// const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-// const empQuestions = require("./lib/questions");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -13,8 +12,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 const newEmployee = [];
-
-// Write code to use inquirer to gather information about the development team members, and to create objects for each team member (using the correct classes as blueprints!)
 
 async function getIntern() {
   try {
@@ -52,7 +49,7 @@ async function getIntern() {
         },
       ])
       .then((answers) => {
-        addedEmployee = new Intern(
+        let addedEmployee = new Intern(
           answers.name,
           answers.id,
           answers.email,
@@ -62,6 +59,8 @@ async function getIntern() {
 
         if (answers.more === "Yes") {
           init();
+        } else {
+          writeFullFile();
         }
       });
   } catch (err) {
@@ -105,17 +104,20 @@ async function getManager() {
         },
       ])
       .then((answers) => {
-        addedEmployee = new Manager(
+        let addedEmployee = new Manager(
           answers.name,
           answers.id,
           answers.email,
           answers.officeNumber
         );
+
         newEmployee.push(addedEmployee);
+
         if (answers.more === "Yes") {
           init();
+        } else {
+          writeFullFile();
         }
-        console.log(newEmployee);
       });
   } catch (err) {
     console.log(err);
@@ -158,7 +160,7 @@ async function getEngineer() {
         },
       ])
       .then((answers) => {
-        addedEmployee = new Engineer(
+        let addedEmployee = new Engineer(
           answers.name,
           answers.id,
           answers.email,
@@ -168,12 +170,24 @@ async function getEngineer() {
 
         if (answers.more === "Yes") {
           init();
+        } else {
+          writeFullFile();
         }
       });
   } catch (err) {
     console.log(err);
   }
 }
+
+writeFullFile = () => {
+  const getArr = render(newEmployee);
+
+  const writeEmFile = (file) => {
+    fs.writeFileSync(outputPath, file);
+  };
+
+  writeEmFile(getArr);
+};
 
 async function init() {
   inquirer
@@ -195,8 +209,6 @@ async function init() {
       }
     });
 }
-
-console.log(newEmployee);
 
 init();
 
