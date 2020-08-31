@@ -36,11 +36,11 @@ This application is initialized in the terminal with the command `node app.js`.
 
 The user is prompted with a series of questions used to fill out the README template. The application will also generate a `.md` file based on what License is chosen by the user.
 
-![HTML Rendered](./assets/html.png)
+![HTML Rendered](./Assets/html.png)
 
-![Code & Terminal](./assets/code.png)
+![Code & Terminal](./Assets/code.png)
 
-![Tests Passing](./assets/test.png)
+![Tests Passing](./Assets/test.png)
 
 A video of the CLI being used can be viewed [here](https://youtu.be/LSRrgaZ5jvk).
 
